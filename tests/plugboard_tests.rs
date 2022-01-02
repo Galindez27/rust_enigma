@@ -6,14 +6,14 @@ use std::collections::hash_set;
 fn route_plugboard_blank_test() {
     // assert_eq!(1, 1)
     let p: Plugboard = Plugboard::blank();
-    for c in b' '..b'~' {
+    for c in b'A'..b'Z' {
         assert_eq!(c, p.route_through(c));
     }
 }
 
 #[test]
 fn route_plugboard_one_plug_test() {
-    let p: Vec<Plug> = vec!((b'a', b'b'));
+    let p: Vec<Plug> = vec!((b'A', b'B'));
     let pb: Plugboard = Plugboard::new(&p);
     for plug in p {
         assert_eq!(pb.route_through(plug.0), plug.1);
@@ -25,14 +25,14 @@ fn route_plugboard_one_plug_test() {
 fn gen_random_unique_plug(used: &mut hash_set::HashSet<u8>) -> Plug {
     let a = {
         let mut temp: u8 = rand::random::<u8>();
-        while used.contains(&temp) || temp < b' ' || temp > b'~' {
+        while used.contains(&temp) || temp < b'A' || temp > b'Z' {
             temp = rand::random::<u8>();
         }
         temp
     };
     let b = {
         let mut temp: u8 = rand::random::<u8>();
-        while used.contains(&temp) || temp < b' ' || temp > b'~' {
+        while used.contains(&temp) || temp < b'A' || temp > b'Z' {
             temp = rand::random::<u8>();
         }
         temp
@@ -58,7 +58,7 @@ fn route_plugboard_four_random_test() {
         assert_eq!(pb.route_through(plug.0), plug.1);
         assert_eq!(pb.route_through(plug.1), plug.0);
     }
-    for c in b' '..b'~' {
+    for c in b'A'..b'Z' {
         if !used.contains(&c) {
             assert_eq!(c, pb.route_through(c));
         }
@@ -68,7 +68,7 @@ fn route_plugboard_four_random_test() {
 #[test]
 #[should_panic]
 fn plugging_plugboard_collision_test() {
-    let p: Vec<Plug> = vec!((b'a', b'b'), (b'b', b'c'));
+    let p: Vec<Plug> = vec!((b'A', b'B'), (b'A', b'B'));
     Plugboard::new(&p);
 }
 
