@@ -14,8 +14,8 @@ pub type Plug = (u8, u8);
 #[allow(dead_code)]
 impl Plugboard {
     pub fn blank() -> Plugboard {
-        let mut temp = Vec::with_capacity((b'Z' - b'A'+1) as usize);
-        for i in b'A'..b'Z' {
+        let mut temp = Vec::with_capacity((b'Z' - b'A'+2) as usize);
+        for i in b'A'..b'Z'+1 {
             temp.push(i)  
         };
         Plugboard {
