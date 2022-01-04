@@ -6,7 +6,7 @@ use std::collections::hash_set;
 fn route_plugboard_blank_test() {
     // assert_eq!(1, 1)
     let p: Plugboard = Plugboard::blank();
-    for c in b'A'..b'Z' {
+    for c in b'A'..b'Z'+1 {
         assert_eq!(c, p.route_through(c));
     }
 }
@@ -58,7 +58,7 @@ fn route_plugboard_four_random_test() {
         assert_eq!(pb.route_through(plug.0), plug.1);
         assert_eq!(pb.route_through(plug.1), plug.0);
     }
-    for c in b'A'..b'Z' {
+    for c in b'A'..b'Z'+1 {
         if !used.contains(&c) {
             assert_eq!(c, pb.route_through(c));
         }
