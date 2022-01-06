@@ -1,4 +1,5 @@
 pub mod plugboard;
+pub mod rotor;
 
 //Place holder for now
 pub fn main() {
